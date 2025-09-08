@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Scan Results - VulnHunter{% endblock %}
+
+{% block content %}
+<div class="bg-gray-800 p-8 rounded-lg shadow-2xl max-w-4xl mx-auto">
+    <h2 class="text-3xl font-bold mb-2">Scan Results</h2>
+    <p class="text-lg text-gray-400 mb-6">Target: <span class="font-mono text-cyan-400">{{ scan.target_url }}</span></p>
+
+    {% if scan.vulnerabilities %}
+        <div class="bg-gray-900 p-1 rounded-lg shadow-inner">
+            <table class="min-w-full">
+                <thead class="bg-gray-700">
+                    <tr>
+                        <th class="p-4 text-left text-sm font-semibold text-gray-300">Vulnerability Type</th>
+                        <th class="p-4 text-left text-sm font-semibold text-gray-300">Vulnerable URL</th>
+                        <th class="p-4 text-left text-sm font-semibold text-gray-300">Payload</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-700">
+                    {% for vuln in scan.vulnerabilities %}
+                    <tr class="hover:bg-gray-700">
+                        <td class="p-4 whitespace-nowrap font-bold text-red-400">{{ vuln.vuln_type }}</td>
+                            <td class="p-4 whitespace-nowrap font-bold">
+                            {% if 'SQL Injection' in vuln.vuln_type %}
+                                <span class="text-red-500">{{ vuln.vuln_type }}</span>
+                            {% elif 'Local File Inclusion' in vuln.vuln_type %}
+                                <span class="text-purple-400">{{ vuln.vuln_type }}</span>
+                            {% else %}
+                                <span class="text-orange-400">{{ vuln.vuln_type }}</span>
+                            {% endif %}
+                        </td>
+                        <td class="p-4 font-mono text-sm break-all">{{ vuln.url }}</td>
+                        <td class="p-4 font-mono text-sm break-all">{{ vuln.payload }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="text-center bg-gray-900 p-8 rounded-lg">
+            <p class="text-gray-400">No vulnerabilities were found for this scan.</p>
+        </div>
+    {% endif %}
+
+    <div class="mt-8 text-center">
+        <a href="{{ url_for('dashboard') }}" class="text-cyan-400 hover:text-cyan-300">&larr; Back to Dashboard</a>
+    </div>
+</div>
+{% endblock %}

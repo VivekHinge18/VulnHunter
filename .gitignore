@@ -1,0 +1,13 @@
+# Virtual Environment
+venv/
+VulnHunter/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Database file
+scanner.db
+
+# VS Code settings folder
+.vscode/

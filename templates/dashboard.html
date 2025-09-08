@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - VulnHunter{% endblock %}
+
+{% block content %}
+<div class="bg-gray-800 p-8 rounded-lg shadow-2xl max-w-2xl mx-auto">
+    <h2 class="text-3xl font-bold mb-6 text-center text-cyan-300">Start a New Scan</h2>
+    
+    <form action="/" method="POST">
+        <div class="mb-4">
+            <label for="target_url" class="block text-sm font-medium text-gray-300 mb-2">Target URL</label>
+            <input type="text" name="target_url" id="target_url" 
+                   class="w-full p-3 bg-gray-700 border border-gray-600 rounded-md focus:ring-cyan-500 focus:border-cyan-500 text-white" 
+                   placeholder="example.com" required>
+        </div>
+        
+        <button type="submit" 
+                class="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 px-4 rounded-md transition duration-300">
+            Scan Now
+        </button>
+    </form>
+</div>
+
+
+<div class="mt-12">
+    <h3 class="text-2xl font-bold mb-4 text-center">Scan History</h3>
+    <div class="bg-gray-800 p-1 rounded-lg shadow-lg">
+        <table class="min-w-full">
+            <thead class="bg-gray-700">
+                <tr>
+                    <th class="p-4 text-left text-sm font-semibold text-gray-300">Target URL</th>
+                    <th class="p-4 text-left text-sm font-semibold text-gray-300">Scan Date</th>
+                    <th class="p-4 text-left text-sm font-semibold text-gray-300">Status</th>
+                    <th class="p-4 text-left text-sm font-semibold text-gray-300">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-700">
+                {% for scan in scans %}
+                <tr class="hover:bg-gray-700">
+                    <td class="p-4 whitespace-nowrap">{{ scan.target_url }}</td>
+                    <td class="p-4 whitespace-nowrap">{{ scan.scan_date | to_ist }}</td>
+                    <td class="p-4 whitespace-nowrap">
+                        {% if scan.status == 'Completed' %}
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500 text-green-900">
+                                {{ scan.status }}
+                            </span>
+                        {% else %}
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-500 text-yellow-900 animate-pulse">
+                                {{ scan.status }}
+                            </span>
+                        {% endif %}
+                    </td>
+                    <td class="p-4 whitespace-nowrap">
+                        <a href="{{ url_for('scan_details', scan_id=scan.id) }}" class="text-cyan-400 hover:text-cyan-300">View Details</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
