@@ -1,4 +1,4 @@
-# VulnHunter - Asynchronous Web Vulnerability Scanner
+#VulnHunter - Asynchronous Web Vulnerability Scanner
 
 VulnHunter is a comprehensive and high-performance web application vulnerability scanner developed to automate the detection of common security flaws. It features a powerful asynchronous engine, built with Python's `asyncio` and `aiohttp`, allowing it to perform hundreds of concurrent non-blocking requests, which dramatically reduces scan times compared to traditional sequential scanners.
 
