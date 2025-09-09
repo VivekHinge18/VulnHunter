@@ -1,4 +1,4 @@
-# 🛡️ VulnHunter - Asynchronous Web Vulnerability Scanner
+# VulnHunter - Asynchronous Web Vulnerability Scanner
 
 VulnHunter is a comprehensive and high-performance web application vulnerability scanner developed to automate the detection of common security flaws. It features a powerful asynchronous engine, built with Python's `asyncio` and `aiohttp`, allowing it to perform hundreds of concurrent non-blocking requests, which dramatically reduces scan times compared to traditional sequential scanners.
 
@@ -7,7 +7,7 @@ The process begins with an intelligent recursive crawler that maps out the targe
 
 
 ---
-## ✨ Key Features
+## Key Features
 
 -   **High-Speed Asynchronous Engine:** Utilizes `asyncio` and `aiohttp` to perform hundreds of non-blocking HTTP requests concurrently, resulting in dramatically faster scan times.
 -   **Multi-Vulnerability Scanning:** Includes modular scanners for:
@@ -21,7 +21,7 @@ The process begins with an intelligent recursive crawler that maps out the targe
 -   **Database Storage:** All scan sessions and findings are stored in a local SQLite database using SQLAlchemy.
 
 ---
-## 🛠️ Tech Stack
+## Tech Stack
 
 -   **Backend:** Python, Flask, SQLAlchemy
 -   **Scanning Engine:** `asyncio`, `aiohttp`, BeautifulSoup
@@ -29,7 +29,7 @@ The process begins with an intelligent recursive crawler that maps out the targe
 -   **Frontend:** HTML, Tailwind CSS
 
 ---
-## 🚀 Setup and Installation
+## Setup and Installation
 
 1.  **Clone the Repository**
     ```bash
